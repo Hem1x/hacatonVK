@@ -1,8 +1,16 @@
 import PersonalCard from '@src/component/PersonalCard/PersonalCard';
+import Carousel from '@src/shared/Carousel/Carousel';
 import { Table, Typography } from 'antd';
 import React from 'react';
 
 const TeachersTopCard = () => {
+  const items = [
+    <PersonalCard />,
+    <PersonalCard />,
+    <PersonalCard />,
+    <PersonalCard />,
+  ];
+
   return (
     <div>
       <Typography.Title level={4}>
@@ -12,7 +20,7 @@ const TeachersTopCard = () => {
         Список преподавателей с самыми отрицательными отзывами
       </Typography.Paragraph>
 
-      <PersonalCard />
+      <Carousel items={items} />
     </div>
   );
 };
