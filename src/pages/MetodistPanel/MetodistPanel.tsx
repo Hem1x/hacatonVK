@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import PersonalCard from '@src/component/PersonalCard/PersonalCard';
 import DashboardList from '@src/component/DashboardList/DashboardList';
 import FeedbackTable from '@src/component/FeedbackTable/FeedbackTable';
+import SuggestionsAI from '@src/component/SuggestionsAI/SuggestionsAI';
 const cn = classNames.bind(s);
 
 const MetodistPanel = () => {
@@ -22,7 +23,7 @@ const MetodistPanel = () => {
     {
       key: 'recommendation',
       label: 'что улучшить?',
-      children: 'ничего',
+      children: <SuggestionsAI />,
     },
   ];
 

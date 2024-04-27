@@ -1,6 +1,7 @@
 import DashboardList from '@src/component/DashboardList/DashboardList';
 import FeedbackTable from '@src/component/FeedbackTable/FeedbackTable';
 import PersonalCard from '@src/component/PersonalCard/PersonalCard';
+import SuggestionsAI from '@src/component/SuggestionsAI/SuggestionsAI';
 import { Tabs, TabsProps, Typography } from 'antd';
 import React from 'react';
 
@@ -19,7 +20,7 @@ const TeacherPanel = () => {
     {
       key: 'recommendation',
       label: 'что улучшить?',
-      children: 'ничего',
+      children: <SuggestionsAI />,
     },
   ];
 

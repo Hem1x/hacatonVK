@@ -19,16 +19,6 @@ const AsideMenu = () => {
   const [activeKey, setActiveKey] = useState<UrlEnum>(UrlEnum.adminUrl);
 
   const items = [
-    // {
-    //   key: UrlEnum.chat,
-    //   icon: <GeneralIcon />,
-    //   label: 'ИИ чат',
-    // },
-    {
-      key: UrlEnum.analysis,
-      icon: <AdminIcon />,
-      label: 'Аналитика',
-    },
     {
       key: UrlEnum.adminUrl,
       icon: <AdminIcon />,
