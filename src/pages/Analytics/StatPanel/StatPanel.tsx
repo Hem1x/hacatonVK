@@ -10,17 +10,20 @@ const StatPanel = ({
   width,
   title,
   children,
+  background,
 }: {
   noStyle?: boolean;
   width?: number;
   title: string;
   children: React.ReactNode;
+  background?: React.CSSProperties['background'];
 }) => {
   return (
     <div
       style={{
         width: width ? width : undefined,
         border: noStyle ? 'none' : undefined,
+        background: background ? background : undefined,
       }}
       className={cn({ container: !noStyle })}>
       <Typography.Title
