@@ -1,0 +1,12 @@
+.container {
+  width: fit-content;
+  border: 1px solid #cdcccc;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 20px;
+}

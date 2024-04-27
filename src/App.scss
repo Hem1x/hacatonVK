@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  height: 100vh;
+}
+
+.content {
+  padding: 50px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
