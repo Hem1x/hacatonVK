@@ -1,0 +1,49 @@
+.card {
+  width: fit-content;
+  padding-right: 40px;
+}
+
+.card__img {
+  height: 100%;
+}
+
+.card__text {
+  margin-right: 50px;
+
+  .name {
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  .position {
+    margin-bottom: 4px;
+  }
+
+  .program {
+    margin-bottom: 15px;
+    color: #8d8d8d;
+  }
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+
+  width: fit-content;
+  padding: 5px 15px;
+  color: white;
+
+  &__name {
+    font-size: 15px;
+    color: black;
+  }
+
+  &__value {
+    font-size: 18px;
+    background: rgb(87, 178, 106);
+    border-radius: 10px;
+    padding: 2px 10px;
+  }
+}

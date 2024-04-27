@@ -5,6 +5,9 @@ import DiagramOption from './DiagramOption/DiagramOption';
 
 interface DiagramPanelProp {
   title: string;
+  size?: number;
+  textGap?: number;
+  noStyle?: boolean;
   isColoredOption?: boolean;
   isMarkedOption?: boolean;
 }
@@ -13,6 +16,9 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const DiagramPanel = ({
   title,
+  size,
+  textGap,
+  noStyle,
   isColoredOption = false,
   isMarkedOption = false,
 }: DiagramPanelProp) => {
@@ -30,16 +36,16 @@ const DiagramPanel = ({
   }));
 
   return (
-    <StatPanel title={title}>
+    <StatPanel noStyle={noStyle} title={title}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-        <PieChart width={150} height={150}>
+        <PieChart width={size ?? 150} height={size ?? 150}>
           <Pie
             data={editedMock}
             cx="50%"
             cy="50%"
             labelLine={false}
-            innerRadius={40}
-            outerRadius={70}
+            innerRadius={size ? size * 0.3 : 40}
+            outerRadius={size ? size * 0.5 : 40}
             fill="#8884d8"
             dataKey="value">
             {mock.map((entry, index) => (
@@ -51,7 +57,7 @@ const DiagramPanel = ({
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 20,
+            gap: textGap ?? 20,
           }}>
           {editedMock.map((data) => (
             <DiagramOption
