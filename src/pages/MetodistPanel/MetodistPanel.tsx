@@ -30,7 +30,19 @@ const MetodistPanel = () => {
   return (
     <div>
       <Typography.Title>Панель методиста</Typography.Title>
-      <PersonalCard />
+      <PersonalCard
+        userData={{
+          name: 'Александр Невский',
+          isMetodist: true,
+          program: 'Основы менеджмента',
+          percent: 10,
+        }}
+        renderData={[
+          { name: 'Качество речи', value: 51 },
+          { name: 'Подача материала', value: 70 },
+          { name: 'Коммукабельность', value: 37 },
+        ]}
+      />
       <Tabs defaultActiveKey="main" items={items} />
     </div>
   );

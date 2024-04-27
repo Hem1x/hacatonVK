@@ -27,12 +27,12 @@ const DiagramOption = ({
         justifyContent: 'space-between',
         gap: 10,
       }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%' }}>
         {shouldAddMark && (
           <div style={{ width: 10, height: 10, background: color }} />
         )}
         <span style={shouldColorText ? { color: color } : {}}>{name}</span>
-        <span style={{ textAlign: 'right' }}>{percent}%</span>
+        <span style={{ textAlign: 'right', flex: 1 }}>{percent}%</span>
       </div>
       <div>
         <span style={{ textAlign: 'right', color: '#bdbdbd' }}>{value}</span>

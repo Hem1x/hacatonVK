@@ -44,7 +44,6 @@ const AsideMenu = () => {
       trigger={null}
       collapsible
       collapsed={collapsed}>
-      <Avatar collapsed={collapsed} className={cn('nav-panel__avatar')} />
       <Menu
         className={cn('nav-panel__menu')}
         mode="inline"

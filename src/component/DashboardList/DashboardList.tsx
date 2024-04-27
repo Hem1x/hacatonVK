@@ -5,7 +5,42 @@ import React from 'react';
 import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
 
 const cn = classNames.bind(s);
-const DashboardList = () => {
+
+interface DashboardListProps {
+  isMetodist?: boolean;
+}
+
+const DashboardList = ({ isMetodist = false }: DashboardListProps) => {
+  const favotritedData = isMetodist
+    ? [
+        { name: 'Преподаватель', value: 91 },
+        { name: 'Программа', value: 234 },
+        { name: 'Вебинар', value: 31 },
+      ]
+    : [
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ];
+
+  const dislikedData = isMetodist
+    ? [
+        { name: 'Преподаватель', value: 11 },
+        { name: 'Программа', value: 40 },
+        { name: 'Вебинар', value: 47 },
+      ]
+    : [
+        { name: 'Качество речи', value: 91 },
+        { name: 'Подача материала', value: 20 },
+        { name: 'Коммукабельность', value: 37 },
+      ];
+
+  const userAssesmentData = [
+    { name: 'Хорошо', value: 91 },
+    { name: 'Удовл.', value: 20 },
+    { name: 'Плохо', value: 37 },
+  ];
+
   return (
     <div
       style={{
@@ -38,9 +73,24 @@ const DashboardList = () => {
           </div>
         </div>
       </StatPanel>
-      <DiagramPanel isMarkedOption title={'Что нравиться пользователям в системе'} />
-      <DiagramPanel isMarkedOption title={'Что не нравиться пользователям'} />
-      <DiagramPanel isColoredOption title={'Оценки пользователей'} />
+      <DiagramPanel
+        isMarkedOption
+        title={'Что нравиться пользователям в системе'}
+        renderData={favotritedData}
+        colorList={['#0d90c8', '#d40d0d', '#d4600d', '#0dd459']}
+      />
+      <DiagramPanel
+        isMarkedOption
+        title={'Что не нравиться пользователям'}
+        renderData={dislikedData}
+        colorList={['#0d98d4', '#d40d0d', '#d4600d', '#0dd459']}
+      />
+      <DiagramPanel
+        isColoredOption
+        title={'Оценки пользователей'}
+        renderData={userAssesmentData}
+        colorList={['#4cbc68', '#ef910d', '#e05b33']}
+      />
     </div>
   );
 };

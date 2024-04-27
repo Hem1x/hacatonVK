@@ -5,19 +5,68 @@ import React from 'react';
 
 const Main = () => {
   const items = [
-    <PersonalCard key={'1'} />,
-    <PersonalCard key={'2'} />,
-    <PersonalCard key={'3'} />,
-    <PersonalCard key={'4'} />,
+    <PersonalCard
+      key={'1'}
+      userData={{
+        name: 'Александр Иванов',
+        isMetodist: true,
+        program: 'Основы менеджмента',
+        percent: 10,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
+    <PersonalCard
+      key={'2'}
+      userData={{
+        name: 'Александр Невский',
+        isMetodist: false,
+        program: 'Основы менеджмента',
+        percent: 10,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
+    <PersonalCard
+      key={'3'}
+      userData={{
+        name: 'Александр Петров',
+        isMetodist: true,
+        program: 'Основы менеджмента',
+        percent: 10,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
+    <PersonalCard
+      key={'4'}
+      userData={{
+        name: 'Александр Невский',
+        isMetodist: true,
+        program: 'Основы менеджмента',
+        percent: 10,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
   ];
 
   return (
     <div>
-      <Typography.Title level={4}>Методисты</Typography.Title>
-      <Carousel items={items} />
-
-      <Typography.Title level={4}>Преподаватели</Typography.Title>
-      <Carousel items={items} />
+      <Carousel title="Методисты" items={items} />
+      <Carousel title="Преподаватели" items={items} />
     </div>
   );
 };

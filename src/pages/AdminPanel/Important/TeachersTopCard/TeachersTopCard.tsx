@@ -5,10 +5,58 @@ import React from 'react';
 
 const TeachersTopCard = () => {
   const items = [
-    <PersonalCard />,
-    <PersonalCard />,
-    <PersonalCard />,
-    <PersonalCard />,
+    <PersonalCard
+      userData={{
+        name: 'Александр Невский',
+        isMetodist: true,
+        program: 'Основы менеджмента',
+        percent: 10,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
+    <PersonalCard
+      userData={{
+        name: 'Александр Иванов',
+        isMetodist: false,
+        program: 'Основы менеджмента',
+        percent: 40,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
+    <PersonalCard
+      userData={{
+        name: 'Александр Петров',
+        isMetodist: true,
+        program: 'Основы менеджмента',
+        percent: 20,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
+    <PersonalCard
+      userData={{
+        name: 'Александр Невский',
+        isMetodist: true,
+        program: 'Основы менеджмента',
+        percent: 10,
+      }}
+      renderData={[
+        { name: 'Качество речи', value: 51 },
+        { name: 'Подача материала', value: 70 },
+        { name: 'Коммукабельность', value: 37 },
+      ]}
+    />,
   ];
 
   return (
@@ -20,7 +68,7 @@ const TeachersTopCard = () => {
         Список преподавателей с самыми отрицательными отзывами
       </Typography.Paragraph>
 
-      <Carousel items={items} />
+      <Carousel title="" items={items} />
     </div>
   );
 };

@@ -6,7 +6,30 @@ import Jason from '../../../public/photo.png';
 import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
 const cn = classNames.bind(s);
 
-const PersonalCard = ({ key }: { key?: string }) => {
+const PersonalCard = ({
+  key,
+  userData = {
+    name: null,
+    isMetodist: false,
+    program: null,
+    percent: null,
+  },
+  renderData = [],
+}: {
+  key?: string;
+  userData?: {
+    name: string | null;
+    isMetodist: boolean | null;
+    program: string | null;
+    percent: number | null;
+  };
+  renderData?: {
+    name: string;
+    value: number;
+  }[];
+}) => {
+  const { name, percent, isMetodist, program } = userData;
+
   return (
     <Card key={key} className={cn('card')}>
       <Flex align="top" wrap="wrap">
@@ -19,15 +42,17 @@ const PersonalCard = ({ key }: { key?: string }) => {
               icon={<img src={Jason} />}
             />
             <div className={cn('card__text')}>
-              <h1 className={cn('name')}>Александр Невский</h1>
-              <p className={cn('position')}>Методист</p>
-              <p className={cn('program')}>"Основы программирования"</p>
+              <h1 className={cn('name')}>{name}</h1>
+              <p className={cn('position')}>
+                {isMetodist ? 'Методист' : 'Преподаватель'}
+              </p>
+              <p className={cn('program')}>"{program}"</p>
             </div>
           </Flex>
 
           <div className={cn('stat')}>
             <p className={cn('stat__name')}>Положительные отзывы:</p>
-            <span className={cn('stat__value')}>10%</span>
+            <span className={cn('stat__value')}>{percent}%</span>
           </div>
         </div>
 
@@ -37,6 +62,8 @@ const PersonalCard = ({ key }: { key?: string }) => {
           noStyle
           isMarkedOption
           title={'Что нравиться пользователям'}
+          renderData={renderData}
+          colorList={['#0d90c8', '#d40d0d', '#d4600d', '#0dd459']}
         />
       </Flex>
     </Card>

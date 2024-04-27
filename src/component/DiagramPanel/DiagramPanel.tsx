@@ -2,9 +2,16 @@ import React from 'react';
 import StatPanel from '../StatPanel/StatPanel';
 import { Cell, Pie, PieChart } from 'recharts';
 import DiagramOption from './DiagramOption/DiagramOption';
-
+import s from './DiagramPanel.module.scss';
+import classNames from 'classnames/bind';
+const cn = classNames.bind(s);
 interface DiagramPanelProp {
   title: string;
+  colorList?: string[];
+  renderData?: {
+    name: string;
+    value: number;
+  }[];
   size?: number;
   textGap?: number;
   background?: React.CSSProperties['background'];
@@ -13,10 +20,19 @@ interface DiagramPanelProp {
   isMarkedOption?: boolean;
 }
 
-const COLORS = ['#00C49F', '#FFBB28', '#ff4842', '#42a7ff'];
+const defaultColors = [
+  '#FF5733', // Красный
+  '#33FF57', // Зелёный
+  '#5733FF', // Синий
+  '#FFFF33', // Жёлтый
+  '#33FFFF', // Бирюзовый
+  '#FF33FF', // Фиолетовый
+];
 
 const DiagramPanel = ({
   title,
+  renderData = [],
+  colorList = defaultColors,
   size,
   textGap,
   background,
@@ -24,22 +40,16 @@ const DiagramPanel = ({
   isColoredOption = false,
   isMarkedOption = false,
 }: DiagramPanelProp) => {
-  const mock = [
-    { name: 'Качество преподавания', value: 91 },
-    { name: 'Качество преподавания', value: 20 },
-    { name: 'Качество преподавания', value: 37 },
-    { name: 'Качество преподавания', value: 5 },
-  ];
-  const totalSum = mock.reduce((acc, current) => acc + current.value, 0);
-  const editedMock = mock.map((el, index) => ({
+  const totalSum = renderData.reduce((acc, current) => acc + current.value, 0);
+  const editedMock = renderData.map((el, index) => ({
     ...el,
     percent: Math.round((el.value / totalSum) * 100),
-    color: COLORS[index],
+    color: colorList[index],
   }));
 
   return (
     <StatPanel noStyle={noStyle} title={title} background={background}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+      <div className={cn('container')}>
         <PieChart width={size ?? 150} height={size ?? 150}>
           <Pie
             data={editedMock}
@@ -50,8 +60,11 @@ const DiagramPanel = ({
             outerRadius={size ? size * 0.5 : 70}
             fill="#8884d8"
             dataKey="value">
-            {mock.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            {renderData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={colorList[index % colorList.length]}
+              />
             ))}
           </Pie>
         </PieChart>

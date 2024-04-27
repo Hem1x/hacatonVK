@@ -27,7 +27,19 @@ const TeacherPanel = () => {
   return (
     <div>
       <Typography.Title>Панель преподавателя</Typography.Title>
-      <PersonalCard />
+      <PersonalCard
+        userData={{
+          name: 'Николай Невский',
+          isMetodist: false,
+          program: 'Основы менеджмента',
+          percent: 43,
+        }}
+        renderData={[
+          { name: 'Качество речи', value: 51 },
+          { name: 'Подача материала', value: 70 },
+          { name: 'Коммукабельность', value: 37 },
+        ]}
+      />
       <Tabs defaultActiveKey="main" items={items} />
     </div>
   );

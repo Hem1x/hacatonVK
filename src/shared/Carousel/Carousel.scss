@@ -4,10 +4,14 @@
   margin-bottom: 20px;
 
   &__btn {
-    background: black;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
+    color: rgb(80, 80, 246);
+    background: transparent;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      color: lighten($color: rgb(80, 80, 246), $amount: 20%);
+    }
   }
 }
 
@@ -32,12 +36,12 @@
 }
 .slide-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
 .slide-exit {
   opacity: 1;
 }
 .slide-exit-active {
   opacity: 0;
-  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
