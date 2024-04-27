@@ -37,8 +37,6 @@ const DiagramPanel = ({
     color: COLORS[index],
   }));
 
-  console.log(size ? size * 0.3 : 40);
-
   return (
     <StatPanel noStyle={noStyle} title={title} background={background}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>

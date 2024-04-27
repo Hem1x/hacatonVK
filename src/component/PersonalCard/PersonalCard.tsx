@@ -3,12 +3,12 @@ import s from './PersonalCard.module.scss';
 import classNames from 'classnames/bind';
 import { Avatar, Card, Flex } from 'antd';
 import Jason from '../../../public/photo.png';
-import DiagramPanel from '@src/pages/Analytics/DiagramPanel/DiagramPanel';
+import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
 const cn = classNames.bind(s);
 
-const PersonalCard = () => {
+const PersonalCard = ({ key }: { key?: string }) => {
   return (
-    <Card className={cn('card')}>
+    <Card key={key} className={cn('card')}>
       <Flex align="top" wrap="wrap">
         <div>
           <Flex gap={30}>

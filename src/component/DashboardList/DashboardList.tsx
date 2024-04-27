@@ -1,8 +1,8 @@
-import StatPanel from '@src/pages/Analytics/StatPanel/StatPanel';
+import StatPanel from '@src/component/StatPanel/StatPanel';
 import classNames from 'classnames/bind';
 import s from './DashboardList.module.scss';
 import React from 'react';
-import DiagramPanel from '@src/pages/Analytics/DiagramPanel/DiagramPanel';
+import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
 
 const cn = classNames.bind(s);
 const DashboardList = () => {
