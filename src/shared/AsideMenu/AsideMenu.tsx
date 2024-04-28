@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { ReactComponent as TeacherIcon } from '../../icons/teacher.svg';
@@ -15,8 +15,8 @@ import LogoCollapsed from '../../../public/collapsed.jpeg';
 const cn = classNames.bind(s);
 
 const AsideMenu = () => {
+  const { pathname } = useLocation();
   const [collapsed, setCollapsed] = useState(false);
-  const [activeKey, setActiveKey] = useState<UrlEnum>(UrlEnum.adminUrl);
   const navigate = useNavigate();
 
   const items = [
@@ -61,10 +61,9 @@ const AsideMenu = () => {
       <Menu
         className={cn('nav-panel__menu')}
         mode="inline"
-        selectedKeys={[activeKey]}
+        selectedKeys={[pathname]}
         items={items}
         onClick={(e) => {
-          setActiveKey(e.key as UrlEnum);
           navigate(e.key);
         }}
       />
