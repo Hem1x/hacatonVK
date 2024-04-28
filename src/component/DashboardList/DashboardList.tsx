@@ -3,7 +3,8 @@ import classNames from 'classnames/bind';
 import s from './DashboardList.module.scss';
 import React from 'react';
 import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
-import ChartList from '@src/pages/MetodistPanel/ChartList/ChartList';
+import MetodistPanelChartList from '@src/pages/MetodistPanel/MetodistPanelChartList/MetodistPanelChartList';
+import TeactPanelChartList from '@src/pages/TeacherPanel/TeactPanelChartList/TeactPanelChartList';
 
 const cn = classNames.bind(s);
 
@@ -92,7 +93,7 @@ const DashboardList = ({ isMetodist = false }: DashboardListProps) => {
         renderData={userAssesmentData}
         colorList={['#4cbc68', '#ef910d', '#e05b33']}
       />
-      <ChartList isMetodist={isMetodist} />
+      {isMetodist ? <MetodistPanelChartList /> : <TeactPanelChartList />}
     </div>
   );
 };
