@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Menu } from 'antd';
+import { Button, Image, Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { ReactComponent as TeacherIcon } from '../../icons/teacher.svg';
 import { ReactComponent as AdminIcon } from '../../icons/admin.svg';
@@ -10,6 +10,8 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { UrlEnum } from '../../App.types';
 import Avatar from '../Avatar/Avatar';
 import classNames from 'classnames/bind';
+import Logo from '../../../public/GeekBrains.png';
+import LogoCollapsed from '../../../public/collapsed.jpeg';
 
 const cn = classNames.bind(s);
 
@@ -44,6 +46,19 @@ const AsideMenu = () => {
       trigger={null}
       collapsible
       collapsed={collapsed}>
+      {!collapsed ? (
+        <img
+          style={{ paddingInline: 20, width: '100%', margin: '0 auto' }}
+          src={Logo}
+          alt="logo"
+        />
+      ) : (
+        <img
+          style={{ paddingInline: 20, width: '100%', margin: '0 auto' }}
+          src={LogoCollapsed}
+          alt="logo"
+        />
+      )}
       <Menu
         className={cn('nav-panel__menu')}
         mode="inline"
