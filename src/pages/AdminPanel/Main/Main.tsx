@@ -2,6 +2,7 @@ import PersonalCard from '@src/component/PersonalCard/PersonalCard';
 import Carousel from '@src/shared/Carousel/Carousel';
 import { Typography } from 'antd';
 import React from 'react';
+import ChartList from './ChartList/ChartList';
 
 const Main = () => {
   const items = [
@@ -67,6 +68,7 @@ const Main = () => {
     <div>
       <Carousel title="Методисты" items={items} />
       <Carousel title="Преподаватели" items={items} />
+      <ChartList />
     </div>
   );
 };

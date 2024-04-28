@@ -13,7 +13,7 @@ const MetodistPanel = () => {
     {
       key: 'main',
       label: 'главная',
-      children: <DashboardList />,
+      children: <DashboardList isMetodist />,
     },
     {
       key: 'feedbackList',
