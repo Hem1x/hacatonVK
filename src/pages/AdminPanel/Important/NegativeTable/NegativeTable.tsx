@@ -1,45 +1,14 @@
+import { api } from '@src/api/api';
+import { TableType } from '@src/api/api.types';
 import { Table, Typography } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const NegativeTable = () => {
-  const dataSource = [
-    {
-      key: '1',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-      percent: 80,
-    },
-    {
-      key: '2',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-      percent: 80,
-    },
-    {
-      key: '3',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-      percent: 80,
-    },
-    {
-      key: '4',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-      percent: 80,
-    },
-  ];
+  const [tableData, setTableData] = useState<TableType[] | null>(null);
+
+  useEffect(() => {
+    api.getAdminImportant().then((data) => setTableData(data));
+  }, []);
 
   const columns = [
     {
@@ -52,29 +21,35 @@ const NegativeTable = () => {
       title: 'Текст',
       dataIndex: 'text',
       key: 'text',
+      render: (text: string) => <span>{text.slice(1)}</span>,
     },
     {
       width: 200,
       title: 'Положительный / Отрицательный',
-      dataIndex: 'isPositive',
-      key: 'isPositive',
+      dataIndex: 'is_positive',
+      key: 'is_positive',
+      render: (text: number) => (
+        <span>{text ? 'положительный' : 'отрицательный'}</span>
+      ),
     },
     {
       width: 150,
       title: 'Информативность',
-      dataIndex: 'isInformative',
-      key: 'isInformative',
+      dataIndex: 'relevance',
+      key: 'relevance',
+      render: (text: number) => (
+        <span>{text ? 'информативный' : 'не информативный'}</span>
+      ),
     },
     {
       title: 'Кому',
-      dataIndex: 'to',
-      key: 'to',
-    },
-    {
-      title: 'Процент негативности отзыва',
-      dataIndex: 'percent',
-      key: 'percent',
-      render: (text: string) => <span style={{ color: 'red' }}>{text}%</span>,
+      dataIndex: 'object',
+      key: 'object',
+      render: (text: string) => (
+        <span>
+          {text === '0' ? 'вебинар' : text === '1' ? 'программа' : 'преподаватель'}
+        </span>
+      ),
     },
   ];
   return (
@@ -84,7 +59,10 @@ const NegativeTable = () => {
         Список отзывов в которых возможны срочные/критичные проблемы
       </Typography.Paragraph>
 
-      <Table dataSource={dataSource} columns={columns} />
+      <Table
+        dataSource={tableData as readonly TableType[] | undefined}
+        columns={columns}
+      />
     </div>
   );
 };

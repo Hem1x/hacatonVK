@@ -1,41 +1,18 @@
+import { api } from '@src/api/api';
+import { TableType } from '@src/api/api.types';
 import { Table } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const FeedbackTable = () => {
-  const dataSource = [
-    {
-      key: '1',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-    },
-    {
-      key: '2',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-    },
-    {
-      key: '3',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-    },
-    {
-      key: '4',
-      id: 8950423423,
-      text: 'njnbjldnfjbfdg',
-      isPositive: 'нет',
-      isInformative: 'да',
-      to: 'Максим Максимыч',
-    },
-  ];
+interface FeedbackTable {
+  isMetodist?: boolean;
+}
+
+const FeedbackTable = ({ isMetodist = false }) => {
+  const [metodistTable, setMetodistTable] = useState<TableType[] | null>(null);
+
+  useEffect(() => {
+    api.getMetodistTable().then((data) => setMetodistTable(data));
+  }, []);
 
   const columns = [
     {
@@ -47,25 +24,44 @@ const FeedbackTable = () => {
       title: 'Текст',
       dataIndex: 'text',
       key: 'text',
+      render: (text: string) => <span>{text.slice(1)}</span>,
     },
     {
+      width: 200,
       title: 'Положительный / Отрицательный',
-      dataIndex: 'isPositive',
-      key: 'isPositive',
+      dataIndex: 'is_positive',
+      key: 'is_positive',
+      render: (text: number) => (
+        <span>{text ? 'положительный' : 'отрицательный'}</span>
+      ),
     },
     {
+      width: 200,
       title: 'Информативность',
-      dataIndex: 'isInformative',
-      key: 'isInformative',
+      dataIndex: 'relevance',
+      key: 'relevance',
+      render: (text: number) => (
+        <span>{text ? 'информативный' : 'не информативный'}</span>
+      ),
     },
     {
       title: 'Кому',
-      dataIndex: 'to',
-      key: 'to',
+      dataIndex: 'object',
+      key: 'object',
+      render: (text: string) => (
+        <span>
+          {text === '0' ? 'вебинар' : text === '1' ? 'программа' : 'преподаватель'}
+        </span>
+      ),
     },
   ];
 
-  return <Table dataSource={dataSource} columns={columns} />;
+  return (
+    <Table
+      dataSource={metodistTable as readonly TableType[] | undefined}
+      columns={columns}
+    />
+  );
 };
 
 export default FeedbackTable;

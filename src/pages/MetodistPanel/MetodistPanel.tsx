@@ -26,12 +26,12 @@ const MetodistPanel = () => {
     {
       key: 'feedbackList',
       label: 'список отзывов',
-      children: <FeedbackTable />,
+      children: <FeedbackTable isMetodist />,
     },
     {
       key: 'recommendation',
       label: 'что улучшить?',
-      children: <SuggestionsAI />,
+      children: <SuggestionsAI isMetodist />,
     },
   ];
 

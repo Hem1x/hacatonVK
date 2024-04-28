@@ -1,73 +1,58 @@
 import PersonalCard from '@src/component/PersonalCard/PersonalCard';
 import Carousel from '@src/shared/Carousel/Carousel';
 import { Typography } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ChartList from './ChartList/ChartList';
+import { CardType } from '@src/api/api.types';
+import { api } from '@src/api/api';
 
 const Main = () => {
-  const items = [
+  const [metodistList, setMetodistList] = useState<CardType[] | null>(null);
+  const [teacherList, setTeacherList] = useState<CardType[] | null>(null);
+
+  useEffect(() => {
+    api.getAdminListMetodist().then((data) => setMetodistList(data));
+    api.getAdminListTeacher().then((data) => setTeacherList(data));
+  }, []);
+
+  const metodists = metodistList?.map((metodist) => (
     <PersonalCard
-      key={'1'}
+      key={metodist.name}
       userData={{
-        name: 'Александр Иванов',
+        name: metodist.name,
         isMetodist: true,
-        program: 'Основы менеджмента',
-        percent: 10,
+        program: metodist.programm,
+        percent: +(metodist.percent_of_good_reviews * 100).toFixed(0),
       }}
       renderData={[
-        { name: 'Качество речи', value: 51 },
-        { name: 'Подача материала', value: 70 },
-        { name: 'Коммукабельность', value: 37 },
+        { name: 'Качество речи', value: metodist.percent_like_knowledge },
+        { name: 'Подача материала', value: metodist.percent_like_knowledgepractice },
+        { name: 'Коммукабельность', value: metodist.percent_like_present },
       ]}
-    />,
+    />
+  ));
+
+  const teachers = teacherList?.map((teacher) => (
     <PersonalCard
-      key={'2'}
+      key={teacher.name}
       userData={{
-        name: 'Александр Невский',
+        name: teacher.name,
         isMetodist: false,
-        program: 'Основы менеджмента',
-        percent: 10,
+        program: teacher.programm,
+        percent: +(teacher.percent_of_good_reviews * 100).toFixed(0),
       }}
       renderData={[
-        { name: 'Качество речи', value: 51 },
-        { name: 'Подача материала', value: 70 },
-        { name: 'Коммукабельность', value: 37 },
+        { name: 'Качество речи', value: teacher.percent_like_knowledge },
+        { name: 'Подача материала', value: teacher.percent_like_knowledgepractice },
+        { name: 'Коммукабельность', value: teacher.percent_like_present },
       ]}
-    />,
-    <PersonalCard
-      key={'3'}
-      userData={{
-        name: 'Александр Петров',
-        isMetodist: true,
-        program: 'Основы менеджмента',
-        percent: 10,
-      }}
-      renderData={[
-        { name: 'Качество речи', value: 51 },
-        { name: 'Подача материала', value: 70 },
-        { name: 'Коммукабельность', value: 37 },
-      ]}
-    />,
-    <PersonalCard
-      key={'4'}
-      userData={{
-        name: 'Александр Невский',
-        isMetodist: true,
-        program: 'Основы менеджмента',
-        percent: 10,
-      }}
-      renderData={[
-        { name: 'Качество речи', value: 51 },
-        { name: 'Подача материала', value: 70 },
-        { name: 'Коммукабельность', value: 37 },
-      ]}
-    />,
-  ];
+    />
+  ));
 
   return (
     <div>
-      <Carousel title="Методисты" items={items} />
-      <Carousel title="Преподаватели" items={items} />
+      {metodists && <Carousel title="Методисты" items={metodists} />}
+      {teachers && <Carousel title="Преподаватели" items={teachers} />}
       <ChartList />
     </div>
   );

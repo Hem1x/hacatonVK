@@ -1,7 +1,9 @@
 import {
+  CardType,
   GraphType,
-  MessageHttpResult,
   PersonalCardHttpResult,
+  RecommendationType,
+  TableType,
   TotalHttpResult,
 } from './api.types';
 
@@ -95,6 +97,66 @@ class Api {
       const graph5 = await response5.json();
 
       return { graph1, graph2, graph3, graph5 };
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getRecommendations(): Promise<RecommendationType | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/metodistGetBetter/`);
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getMetodistTable(): Promise<TableType[] | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/metodistList/`);
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getAdminImportant(): Promise<TableType[] | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/AdminImportant/`);
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getAdminListMetodist(): Promise<CardType[] | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/AdminListMetodist/`);
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getAdminListTeacher(): Promise<CardType[] | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/AdminListTeacher/`);
+      const data = await response.json();
+
+      return data;
     } catch (error) {
       console.error(error);
       return null;

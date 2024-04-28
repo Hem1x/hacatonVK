@@ -1,5 +1,7 @@
+import { api } from '@src/api/api';
+import { RecommendationType } from '@src/api/api.types';
 import { Card, Flex, Row, Space, Typography } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface SuggestionCardProps {
   data: {
@@ -29,7 +31,24 @@ const SuggestionCard = ({ data }: SuggestionCardProps) => {
   );
 };
 
-const SuggestionsAI = () => {
+interface SuggestionsAIProps {
+  isMetodist?: boolean;
+}
+
+const SuggestionsAI = ({ isMetodist = false }) => {
+  const [recommendations, setRecomendations] = useState<RecommendationType | null>(
+    null,
+  );
+
+  useEffect(() => {
+    api.getRecommendations().then((data) => {
+      setRecomendations(data);
+    });
+  }, []);
+
+  const needImprove = isMetodist ? recommendations?.need_improve : 'Коммуникация';
+  const studentSuggestion = isMetodist ? recommendations?.student_suggestion : '';
+
   return (
     <Flex style={{ width: 700, flexDirection: 'column', gap: 50 }}>
       <div>
@@ -39,9 +58,9 @@ const SuggestionsAI = () => {
         </Typography.Paragraph>
         <SuggestionCard
           data={{
-            title: 'Требует улучшения: Составление презентации',
-            subtitle: 'Предложения по улучшению от ИИ: aoaoaoa',
-            percent: 10,
+            title: `Требует улучшения: ${needImprove}`,
+            subtitle: 'Предложения по улучшению от ИИ',
+            percent: needImprove?.length === 0 ? 0 : 10,
           }}
         />
       </div>
@@ -54,9 +73,9 @@ const SuggestionsAI = () => {
         </Typography.Paragraph>
         <SuggestionCard
           data={{
-            title: 'Требует улучшения: Составление презентации',
-            subtitle: 'Предложения по улучшению от ИИ: aoaoaoa',
-            percent: 10,
+            title: `Требует улучшения: ${studentSuggestion}`,
+            subtitle: 'Предложения по улучшению от учеников',
+            percent: studentSuggestion?.length === 0 ? 0 : 10,
           }}
         />
       </div>

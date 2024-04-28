@@ -29,3 +29,25 @@ export type GraphType = {
   name: string;
   val: number;
 }[];
+
+export type RecommendationType = {
+  need_improve: string;
+  student_suggestion: string;
+};
+
+export type TableType = {
+  id: number;
+  text: string;
+  is_positive: number;
+  relevance: number;
+  object: string;
+};
+
+export type CardType = {
+  name: string;
+  programm: string;
+  percent_of_good_reviews: number;
+  percent_like_present: number;
+  percent_like_knowledgepractice: number;
+  percent_like_knowledge: number;
+};
