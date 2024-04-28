@@ -35,9 +35,9 @@ const TeacherPanel = () => {
           percent: 43,
         }}
         renderData={[
-          { name: 'Качество речи', value: 51 },
-          { name: 'Подача материала', value: 70 },
-          { name: 'Коммукабельность', value: 37 },
+          { name: 'Доступно объясняет материал', value: 51 },
+          { name: 'Коммуникабельность', value: 70 },
+          { name: 'Хорошо осведомленность в тематике', value: 37 },
         ]}
       />
       <Tabs defaultActiveKey="main" items={items} />

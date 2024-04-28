@@ -13,28 +13,22 @@ interface DashboardListProps {
 }
 
 const DashboardList = ({ isMetodist = false }: DashboardListProps) => {
-  const favotritedData = isMetodist
-    ? [
-        { name: 'Преподаватель', value: 91 },
-        { name: 'Программа', value: 234 },
-        { name: 'Вебинар', value: 31 },
-      ]
-    : [
-        { name: 'Качество речи', value: 51 },
-        { name: 'Подача материала', value: 70 },
-        { name: 'Коммукабельность', value: 37 },
-      ];
+  const favotritedData = [
+    { name: 'Преподаватель', value: 91 },
+    { name: 'Программа', value: 234 },
+    { name: 'Вебинар', value: 31 },
+  ];
 
   const dislikedData = isMetodist
     ? [
-        { name: 'Преподаватель', value: 11 },
-        { name: 'Программа', value: 40 },
-        { name: 'Вебинар', value: 47 },
+        { name: 'Отсуствие структуры вебинара', value: 11 },
+        { name: 'Неактуальный материал', value: 40 },
+        { name: 'Неактуальные примеры', value: 47 },
       ]
     : [
-        { name: 'Качество речи', value: 91 },
-        { name: 'Подача материала', value: 20 },
-        { name: 'Коммукабельность', value: 37 },
+        { name: 'Плохая речь', value: 91 },
+        { name: 'Плохое знание материала', value: 20 },
+        { name: 'Плохая коммуникабельность', value: 37 },
       ];
 
   const userAssesmentData = [
@@ -83,7 +77,7 @@ const DashboardList = ({ isMetodist = false }: DashboardListProps) => {
       />
       <DiagramPanel
         isMarkedOption
-        title={'Что не нравится пользователям'}
+        title={'Что не нравится пользователям в уроках'}
         renderData={dislikedData}
         colorList={['#0d98d4', '#d40d0d', '#d4600d', '#0dd459']}
       />
