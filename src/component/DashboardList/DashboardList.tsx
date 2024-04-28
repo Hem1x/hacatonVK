@@ -77,13 +77,13 @@ const DashboardList = ({ isMetodist = false }: DashboardListProps) => {
       </StatPanel>
       <DiagramPanel
         isMarkedOption
-        title={'Что нравиться пользователям в системе'}
+        title={'Что нравится пользователям в системе'}
         renderData={favotritedData}
         colorList={['#0d90c8', '#d40d0d', '#d4600d', '#0dd459']}
       />
       <DiagramPanel
         isMarkedOption
-        title={'Что не нравиться пользователям'}
+        title={'Что не нравится пользователям'}
         renderData={dislikedData}
         colorList={['#0d98d4', '#d40d0d', '#d4600d', '#0dd459']}
       />

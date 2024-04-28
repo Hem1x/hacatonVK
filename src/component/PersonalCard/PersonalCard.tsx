@@ -61,7 +61,7 @@ const PersonalCard = ({
           textGap={5}
           noStyle
           isMarkedOption
-          title={'Что нравиться пользователям'}
+          title={'Что нравится пользователям'}
           renderData={renderData}
           colorList={['#0d90c8', '#d40d0d', '#d4600d', '#0dd459']}
         />

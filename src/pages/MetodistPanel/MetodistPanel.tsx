@@ -32,9 +32,9 @@ const MetodistPanel = () => {
       <Typography.Title>Панель методиста</Typography.Title>
       <PersonalCard
         userData={{
-          name: 'Александр Невский',
+          name: 'Лебедев',
           isMetodist: true,
-          program: 'Основы менеджмента',
+          program: 'Основы програмирования',
           percent: 10,
         }}
         renderData={[
