@@ -9,7 +9,7 @@ import s from './AsideMenu.module.scss';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { UrlEnum } from '../../App.types';
 import classNames from 'classnames/bind';
-import Logo from '../../../public/GeekBrains.png';
+import Logo from '/GeekBrains.png';
 import LogoCollapsed from '../../../public/collapsed.jpeg';
 
 const cn = classNames.bind(s);

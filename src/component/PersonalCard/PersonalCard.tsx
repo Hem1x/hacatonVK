@@ -2,7 +2,7 @@ import React from 'react';
 import s from './PersonalCard.module.scss';
 import classNames from 'classnames/bind';
 import { Avatar, Card, Flex } from 'antd';
-import Jason from '../../../public/photo.png';
+import Jason from '/photo.png';
 import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
 const cn = classNames.bind(s);
 
