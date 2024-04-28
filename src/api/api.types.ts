@@ -24,3 +24,8 @@ export type TotalHttpResult = {
   marks_middle: number;
   marks_bad: number;
 };
+
+export type GraphType = {
+  name: string;
+  val: number;
+}[];

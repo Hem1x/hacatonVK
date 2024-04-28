@@ -1,4 +1,5 @@
 import {
+  GraphType,
   MessageHttpResult,
   PersonalCardHttpResult,
   TotalHttpResult,
@@ -49,6 +50,51 @@ class Api {
       const response = await fetch(`${this.apiURL}/TeacherTotal/`);
       const data = await response.json();
       return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getTeacherGraphs(): Promise<{
+    graph1: GraphType;
+    graph2: GraphType;
+    graph3: GraphType;
+  } | null> {
+    try {
+      const response1 = await fetch(`${this.apiURL}/TeacherGraphs1/`);
+      const response2 = await fetch(`${this.apiURL}/TeacherGraphs2/`);
+      const response3 = await fetch(`${this.apiURL}/TeacherGraphs3/`);
+
+      const graph1 = await response1.json();
+      const graph2 = await response2.json();
+      const graph3 = await response3.json();
+
+      return { graph1, graph2, graph3 };
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getMetodistGraphs(): Promise<{
+    graph1: GraphType;
+    graph2: GraphType;
+    graph3: GraphType;
+    graph5: GraphType;
+  } | null> {
+    try {
+      const response1 = await fetch(`${this.apiURL}/MetodistGraphs1/`);
+      const response2 = await fetch(`${this.apiURL}/MetodistGraphs2/`);
+      const response3 = await fetch(`${this.apiURL}/MetodistGraphs3/`);
+      const response5 = await fetch(`${this.apiURL}/MetodistGraphs5/`);
+
+      const graph1 = await response1.json();
+      const graph2 = await response2.json();
+      const graph3 = await response3.json();
+      const graph5 = await response5.json();
+
+      return { graph1, graph2, graph3, graph5 };
     } catch (error) {
       console.error(error);
       return null;
