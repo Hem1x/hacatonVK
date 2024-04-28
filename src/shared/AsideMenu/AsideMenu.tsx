@@ -47,7 +47,7 @@ const AsideMenu = () => {
       <Menu
         className={cn('nav-panel__menu')}
         mode="inline"
-        activeKey={activeKey}
+        selectedKeys={[activeKey]}
         items={items}
         onClick={(e) => {
           setActiveKey(e.key as UrlEnum);
