@@ -38,9 +38,9 @@ const MetodistPanel = () => {
           percent: 10,
         }}
         renderData={[
-          { name: 'Качество речи', value: 51 },
-          { name: 'Подача материала', value: 70 },
-          { name: 'Коммукабельность', value: 37 },
+          { name: 'Преподаватель', value: 11 },
+          { name: 'Программа', value: 40 },
+          { name: 'Вебинар', value: 47 },
         ]}
       />
       <Tabs defaultActiveKey="main" items={items} />
