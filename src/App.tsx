@@ -10,9 +10,6 @@ import AsideMenu from './shared/AsideMenu/AsideMenu';
 export type ActiveKeyType = UrlEnum | 'top';
 
 const App = () => {
-  const { pathname } = useLocation();
-  const isChat = pathname === UrlEnum.chat;
-
   return (
     <main>
       <Layout>
@@ -21,7 +18,7 @@ const App = () => {
           <Layout.Content
             className="content"
             id="content"
-            style={!isChat ? { overflowY: 'scroll' } : {}}>
+            style={{ overflowY: 'scroll' }}>
             <Routes>
               <Route path={UrlEnum.metodistUrl} element={<MetodistPanel />} />
               <Route path={UrlEnum.teacherUrl} element={<TeacherPanel />} />

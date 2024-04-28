@@ -76,6 +76,7 @@ const DiagramPanel = ({
           }}>
           {editedMock.map((data) => (
             <DiagramOption
+              key={data.color}
               isColoredOption={isColoredOption}
               isMarkedOption={isMarkedOption}
               data={data}

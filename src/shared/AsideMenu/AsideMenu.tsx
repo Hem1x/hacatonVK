@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Image, Menu } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { Button, Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { ReactComponent as TeacherIcon } from '../../icons/teacher.svg';
 import { ReactComponent as AdminIcon } from '../../icons/admin.svg';
@@ -8,7 +8,6 @@ import { useState } from 'react';
 import s from './AsideMenu.module.scss';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { UrlEnum } from '../../App.types';
-import Avatar from '../Avatar/Avatar';
 import classNames from 'classnames/bind';
 import Logo from '../../../public/GeekBrains.png';
 import LogoCollapsed from '../../../public/collapsed.jpeg';
@@ -17,8 +16,8 @@ const cn = classNames.bind(s);
 
 const AsideMenu = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState<UrlEnum>(UrlEnum.adminUrl);
+  const navigate = useNavigate();
 
   const items = [
     {
