@@ -34,9 +34,6 @@ const DiagramOption = ({
         <span style={shouldColorText ? { color: color } : {}}>{name}</span>
         <span style={{ textAlign: 'right', flex: 1 }}>{percent}%</span>
       </div>
-      <div>
-        <span style={{ textAlign: 'right', color: '#bdbdbd' }}>{value}</span>
-      </div>
     </div>
   );
 };

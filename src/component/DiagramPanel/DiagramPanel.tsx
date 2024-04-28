@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import StatPanel from '../StatPanel/StatPanel';
 import { Cell, Pie, PieChart } from 'recharts';
 import DiagramOption from './DiagramOption/DiagramOption';
@@ -43,31 +43,47 @@ const DiagramPanel = ({
   const totalSum = renderData.reduce((acc, current) => acc + current.value, 0);
   const editedMock = renderData.map((el, index) => ({
     ...el,
-    percent: Math.round((el.value / totalSum) * 100),
+    percent: totalSum === 0 ? 0 : Math.round((el.value / totalSum) * 100),
     color: colorList[index],
   }));
+  const isEditedMockEmpty = totalSum === 0;
 
   return (
     <StatPanel noStyle={noStyle} title={title} background={background}>
       <div className={cn('container')}>
-        <PieChart width={size ?? 150} height={size ?? 150}>
-          <Pie
-            data={editedMock}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            innerRadius={size ? size * 0.3 : 40}
-            outerRadius={size ? size * 0.5 : 70}
-            fill="#8884d8"
-            dataKey="value">
-            {renderData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={colorList[index % colorList.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
+        {isEditedMockEmpty ? (
+          <div
+            style={{
+              width: size ?? 150,
+              height: size ?? 150,
+              background: '#f2f2f2',
+              borderRadius: 9999,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <span>Нет данных</span>
+          </div>
+        ) : (
+          <PieChart width={size ?? 150} height={size ?? 150}>
+            <Pie
+              data={editedMock}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              innerRadius={size ? size * 0.3 : 40}
+              outerRadius={size ? size * 0.5 : 70}
+              fill="#8884d8"
+              dataKey="value">
+              {renderData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={colorList[index % colorList.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        )}
         <div
           style={{
             display: 'flex',
@@ -78,7 +94,7 @@ const DiagramPanel = ({
             <DiagramOption
               key={data.color}
               isColoredOption={isColoredOption}
-              isMarkedOption={isMarkedOption}
+              isMarkedOption={isMarkedOption && !isEditedMockEmpty}
               data={data}
             />
           ))}

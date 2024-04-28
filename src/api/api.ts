@@ -1,27 +1,8 @@
-import { MessageHttpResult } from './api.types';
-
-type MetodistPersonalCardHttpResult = {
-  percent_of_good_reviews: number;
-  percent_like_present: number;
-  percent_like_knowledgepractice: number;
-  percent_like_knowledge: number;
-};
-
-type MetodistTotalHttpResult = {
-  percent_of_good_reviews: number;
-  percent_of_bad_reviews: number;
-  percent_of_good_inf_reviews: number;
-  percent_of_bad_inf_reviews: number;
-  percent_object_0: number;
-  percent_object_1: number;
-  percent_object_2: number;
-  percent_notlike_present: number;
-  percent_notlike_knowledgePractice: number;
-  percent_notlike_knowledge: number;
-  marks_good: number;
-  marks_middle: number;
-  marks_bad: number;
-};
+import {
+  MessageHttpResult,
+  PersonalCardHttpResult,
+  TotalHttpResult,
+} from './api.types';
 
 class Api {
   apiURL;
@@ -30,27 +11,47 @@ class Api {
     this.apiURL = apiURL;
   }
 
-  async getMetodistPersonalCard(): Promise<
-    MetodistPersonalCardHttpResult | undefined
-  > {
+  async getMetodistPersonalCard(): Promise<PersonalCardHttpResult | null> {
     try {
       const response = await fetch(`${this.apiURL}/MetodistPersonalCard/`);
       const data = await response.json();
       return data;
     } catch (error) {
       console.error(error);
-      return;
+      return null;
     }
   }
 
-  async getMetodistTotal(): Promise<MetodistTotalHttpResult | undefined> {
+  async getTeacherPersonalCard(): Promise<PersonalCardHttpResult | null> {
     try {
-      const response = await fetch(`${this.apiURL}/MetodistPersonalCard/`);
+      const response = await fetch(`${this.apiURL}/TeacherPersonalCard/`);
       const data = await response.json();
       return data;
     } catch (error) {
       console.error(error);
-      return;
+      return null;
+    }
+  }
+
+  async getMetodistTotal(): Promise<TotalHttpResult | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/MetodistTotal/`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async getTeacherTotal(): Promise<TotalHttpResult | null> {
+    try {
+      const response = await fetch(`${this.apiURL}/TeacherTotal/`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
     }
   }
 

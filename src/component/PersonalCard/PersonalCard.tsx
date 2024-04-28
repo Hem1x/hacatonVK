@@ -6,23 +6,20 @@ import Jason from '/photo.png';
 import DiagramPanel from '@src/component/DiagramPanel/DiagramPanel';
 const cn = classNames.bind(s);
 
+type userDataType = {
+  name: string;
+  isMetodist: boolean;
+  program: string;
+  percent: number;
+};
+
 const PersonalCard = ({
   key,
-  userData = {
-    name: null,
-    isMetodist: false,
-    program: null,
-    percent: null,
-  },
+  userData = {} as userDataType,
   renderData = [],
 }: {
   key?: string;
-  userData?: {
-    name: string | null;
-    isMetodist: boolean | null;
-    program: string | null;
-    percent: number | null;
-  };
+  userData?: userDataType;
   renderData?: {
     name: string;
     value: number;

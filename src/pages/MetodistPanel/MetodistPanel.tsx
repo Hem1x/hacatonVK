@@ -1,14 +1,22 @@
 import { Tabs, TabsProps, Typography } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './MetodistPanel.module.scss';
 import classNames from 'classnames/bind';
 import PersonalCard from '@src/component/PersonalCard/PersonalCard';
 import DashboardList from '@src/component/DashboardList/DashboardList';
 import FeedbackTable from '@src/component/FeedbackTable/FeedbackTable';
 import SuggestionsAI from '@src/component/SuggestionsAI/SuggestionsAI';
+import { PersonalCardHttpResult } from '@src/api/api.types';
+import { api } from '@src/api/api';
 const cn = classNames.bind(s);
 
 const MetodistPanel = () => {
+  const [data, setData] = useState<PersonalCardHttpResult | null>(null);
+
+  useEffect(() => {
+    api.getMetodistPersonalCard().then((data) => setData(data));
+  }, []);
+
   const items: TabsProps['items'] = [
     {
       key: 'main',
@@ -30,19 +38,27 @@ const MetodistPanel = () => {
   return (
     <div>
       <Typography.Title>Панель методиста</Typography.Title>
-      <PersonalCard
-        userData={{
-          name: 'Лебедев',
-          isMetodist: true,
-          program: 'Основы програмирования',
-          percent: 10,
-        }}
-        renderData={[
-          { name: 'Качественная презентация', value: 11 },
-          { name: 'Актуальность материала', value: 40 },
-          { name: 'Актуальные бизнес примеры', value: 47 },
-        ]}
-      />
+      {data && (
+        <PersonalCard
+          userData={{
+            name: 'Лебедев',
+            isMetodist: true,
+            program: 'Основы програмирования',
+            percent: +(data.percent_of_good_reviews * 100).toFixed(0),
+          }}
+          renderData={[
+            { name: 'Качественная презентация', value: data.percent_like_present },
+            {
+              name: 'Актуальность материала',
+              value: data.percent_like_knowledgepractice,
+            },
+            {
+              name: 'Актуальные бизнес примеры',
+              value: data.percent_like_knowledge,
+            },
+          ]}
+        />
+      )}
       <Tabs defaultActiveKey="main" items={items} />
     </div>
   );
